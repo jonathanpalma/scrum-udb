@@ -1,0 +1,50 @@
+{
+  "name": "react-ts-poc",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/debug": "^4.1.5",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.2",
+    "@types/react-dom": "^16.9.0",
+    "debug": "^4.1.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-hook-form": "^3.22.2",
+    "react-scripts": "^3.1.1",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "lint": "eslint \"src/**/*.{ts,tsx}\"",
+    "prettier": "prettier \"**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\"",
+    "test": "react-scripts test",
+    "validate": "npm run lint && npm run prettier -- --list-different"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.1.0",
+    "@testing-library/react": "^9.1.3",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.14.3",
+    "prettier": "^1.18.2"
+  }
+}
