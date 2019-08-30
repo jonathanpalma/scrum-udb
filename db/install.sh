@@ -25,7 +25,10 @@ then
           docker container start scrum-udb-db
         else
           echo "Creating container..."
-          docker run -d --name scrum-udb-db --publish 5432:5432 -v scrum-udb-data:/var/lib/postgresql scrum-udb-db-img
+          docker run -itd --restart always --name scrum-udb-db --expose 5432 --publish 5432:5432 \
+            -v scrum-udb-data:/var/lib/postgresql --env 'DB_EXTENSION=adminpack,unaccent,pg_trgm' \
+            --env 'PG_PASSWORD=passw0rd' --env 'DB_NAME=scrum' --env 'DB_USER=user' --env 'DB_PASS=password' \
+            scrum-udb-db-img
         fi
       else 
         echo "Container already running"
