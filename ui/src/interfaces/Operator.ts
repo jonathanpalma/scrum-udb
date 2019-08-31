@@ -8,4 +8,5 @@ export default interface Operator {
   isActive: boolean;
   hiredDate: moment.Moment;
   firedDate?: moment.Moment;
+  punishmentNumber: number; 
 }

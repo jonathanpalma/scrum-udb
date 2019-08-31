@@ -12,3 +12,5 @@ const getWorkLogByDayOperator = (
 
   return workLog;
 };
+
+export default getWorkLogByDayOperator;
