@@ -38,7 +38,7 @@ function HomePage() {
 
     setTimeout(() => {
       setState({ isSimulating: false, workableDays });
-    }, 2000);
+    }, 1000);
   };
 
   const onSubmit = ({

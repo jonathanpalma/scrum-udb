@@ -3,9 +3,9 @@ const rand = (min: number, max: number) => {
 };
 
 const getRandomScore = () => {
-  const scoreList = [1,2,3,4,5];
-  const weight = [0.02, 0.04, 0.04, 0.45, 0.45]
-  
+  const scoreList = [1, 2, 3, 4, 5];
+  const weight = [0.02, 0.04, 0.04, 0.45, 0.45];
+
   const totalWeight = weight.reduce((prev, current) => prev + current);
   const randomNum = rand(0, totalWeight);
   let weightSum = 0;
@@ -20,7 +20,6 @@ const getRandomScore = () => {
   }
 
   return 4;
-
 };
 
 export default getRandomScore;
