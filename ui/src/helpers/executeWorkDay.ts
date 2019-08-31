@@ -47,7 +47,7 @@ jobs.forEach(function(job){
             
 
             if(workQuality.score === 1){
-                if (getOperatorQualityAverage(operator) <= 3) {
+                if (getOperatorQualityAverage(operator,dayLogs) <= 3) {
                     operator.isActive = false;
                     operator.firedDate = day;
                     operators.push(generateOperator(day));
