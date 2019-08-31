@@ -1,8 +1,8 @@
-const rand = function(min: number, max: number) {
+const rand = (min: number, max: number) => {
   return Math.random() * (max - min) + min;
 };
 
-const getRandomScore = function() {
+const getRandomScore = () => {
   const scoreList = [1,2,3,4,5];
   const weight = [0.02, 0.04, 0.04, 0.45, 0.45]
   
