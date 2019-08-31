@@ -23,19 +23,27 @@ Ejecuta la aplicación en modo de desarrollo.
 
 Inicia el corredor de prueba en el modo interactivo.
 
+### `npm run dev`
+
+Compila y ejecuta la aplicacion en entorno de desarrollo.
+
 ### `npm run build`
 
 Compila la aplicación para producción en la carpeta `build`.
 
 ## Project structure
 
-Estructura del proyecto
+-Estructura del proyecto
 
-Dentro de la carpeta `src` hay algunas carpetas para códigos que no son de características que se pueden compartir en diferentes partes de la aplicación (components, constants, helpers, services). 
+Dentro de la carpeta `src` hay algunas carpetas para códigos que no son de características que se pueden compartir en diferentes partes de la aplicación (components, config, constants, helpers, services). 
 
 ### components
 
 La carpeta `components` contiene componentes de React que se pueden usar en cualquier lugar de la aplicación.
+
+## config
+
+La carpeta `config` contiene toda la configuración que necesita el logger.
 
 ### constants
 
@@ -45,6 +53,10 @@ La carpeta `constants` contiene todas las constantes usadas en la aplicacion.
 
 La carpeta `helpers` contiene todos las piezas de codigo que no pertenecen en otras carpetas pero que al mismo tiempo no justifican tener una carpeta propia.
 
-### services
+### hooks
 
-La carpeta `services` contiene una capa que maneja todas las comunicaciones http con API de back-end para la aplicación, cada servicio encapsula las llamadas a la API para un tipo de contenido (por ejemplo, usuarios) y expone métodos para realizar diversas operaciones (por ejemplo, operaciones CRUD).
+La carpeta `hooks` contiene [react hooks](https://es.reactjs.org/docs/hooks-intro.html), los cuales nos permiten usar estado y otras características de React sin escribir una clase, nos permiten “enganchar” el estado de React y el ciclo de vida desde componentes funcionales.
+
+### interfaces
+
+La carpeta `interfaces` contiene en si todas las interfaces que cumplen la función de nombrar estos tipos y son una forma poderosa de definir contratos dentro de su código.
