@@ -3,10 +3,10 @@ import moment from 'moment';
 export default interface Operator {
   id: string; // uuid
   name: string;
-  category: number, // values from 1 ~ 5
+  category: number; // values from 1 ~ 5
   isPunished: boolean;
   isActive: boolean;
   hiredDate: moment.Moment;
   firedDate?: moment.Moment;
-  punishmentNumber: number; 
+  punishmentNumber: number;
 }

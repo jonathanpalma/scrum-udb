@@ -1,9 +1,9 @@
 import Operator from "interfaces/Operator";
 import moment from 'moment';
 
-const fireOperator = (operator: Operator): Operator => {
+const fireOperator = (day: moment.Moment, operator: Operator): Operator => {
 
-    operator.firedDate = moment();
+    operator.firedDate = day;
     operator.isActive = false;
 
     return operator;
