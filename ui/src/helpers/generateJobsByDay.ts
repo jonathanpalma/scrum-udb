@@ -8,6 +8,8 @@ const rand = (min: number, max: number) => {
 
 const getRandomJobs = (month: number): number => {
   const days = [15, 18, 20, 22, 25];
+  var myArray = [1,2,3,4,5,-1,-2,-3,-4,-8,-9,-10];
+  var randomFactor = myArray[Math.floor(Math.random() * myArray.length)]
 
   var weight = [];
   switch (month) {
@@ -42,7 +44,7 @@ const getRandomJobs = (month: number): number => {
     weightSum = +weightSum.toFixed(2);
 
     if (randomNum <= weightSum) {
-      return days[i];
+      return days[i] + randomFactor;
     }
   }
 
