@@ -4,14 +4,6 @@ import Operator from 'interfaces/Operator';
 import WorkLog from 'interfaces/WorkLog';
 const uuidv4 = require('uuid/v4');
 
-/*- function assign(day, job, operator)
-  - params:
-    - day: moment.Moment
-    - job: Job
-    - operator: Operator
-  - returns:
-    - workLog: WorkLog*/
-
 const assign = (day: moment.Moment, job: Job, operator: Operator): WorkLog => {
   var workLog: WorkLog = {
     id: uuidv4(),
