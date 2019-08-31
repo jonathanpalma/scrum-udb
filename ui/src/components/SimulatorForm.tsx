@@ -31,7 +31,7 @@ function SimulatorForm({ isLoading, onSubmit }: Props): JSX.Element {
     onSubmit(formData);
   };
   return (
-    <Form>
+    <Form className="simulator-form">
       <Form.Group controlId="operatorsQty">
         <Form.Label>Cantidad de operadores</Form.Label>
         <Form.Control
