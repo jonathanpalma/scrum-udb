@@ -11,6 +11,8 @@ import Operator from 'interfaces/Operator';
 import WorkQuality from 'interfaces/WorkQuality';
 import DayLog from 'interfaces/DayLog';
 import generateJobsByDay from 'helpers/generateJobsByDay';
+import generateOperator from 'helpers/generateOperator';
+import updateOperators from 'helpers/updateOperators';
 
 interface State {
   isSimulating: boolean;
@@ -44,16 +46,21 @@ function HomePage() {
   ): void => {
     setState({ isSimulating: true });
 
+    const workableDays = generateWorkableDays(2);
+
     let allJobs: Array<Job> = [];
-    let allOperators: Array<Operator> = [];
-    const workableDays = generateWorkableDays(36);
+    let allOperators: Array<Operator> = Array.from(Array(operatorsQty), () =>
+      generateOperator(workableDays[0])
+    );
     const logsByDay: Array<DayLog> = workableDays.map(
       (day: moment.Moment): DayLog => {
         const jobs: Array<Job> = generateJobsByDay(day);
         const operators: Array<Operator> = [];
 
         allJobs = allJobs.concat(jobs);
-        allOperators = allOperators.concat(operators);
+        operators.forEach(operator => {
+          allOperators = updateOperators(allOperators, operator);
+        });
 
         const workQualities: Array<WorkQuality> = [];
         return { day, jobs, operators, workQualities };
@@ -63,6 +70,7 @@ function HomePage() {
     setState({
       isSimulating: false,
       jobs: allJobs,
+      operators: allOperators,
       logsByDay,
     });
   };
