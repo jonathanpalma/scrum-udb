@@ -20,7 +20,7 @@ function JobsInTimeChart(): JSX.Element {
   }));
 
   return (
-    <div style={{ height: '70vh' }}>
+    <div style={{ height: '40vh' }}>
       <ResponsiveContainer width="100%">
         <AreaChart
           width={730}
