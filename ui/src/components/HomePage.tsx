@@ -51,33 +51,35 @@ function HomePage() {
   ): void => {
     setState({ isSimulating: true });
 
-    const workableDays = generateWorkableDays(2);
+    setTimeout(() => {
+      const workableDays = generateWorkableDays(1);
 
-    let allJobs: Array<Job> = [];
-    let allOperators: Array<Operator> = Array.from(Array(operatorsQty), () =>
-      generateOperator(workableDays[0])
-    );
-    const logsByDay: Array<DayLog> = workableDays.map(
-      (day: moment.Moment): DayLog => {
-        const jobs: Array<Job> = generateJobsByDay(day);
-        const operators: Array<Operator> = [];
+      let allJobs: Array<Job> = [];
+      let allOperators: Array<Operator> = Array.from(Array(operatorsQty), () =>
+        generateOperator(workableDays[0])
+      );
+      const logsByDay: Array<DayLog> = workableDays.map(
+        (day: moment.Moment): DayLog => {
+          const jobs: Array<Job> = generateJobsByDay(day);
+          const operators: Array<Operator> = [...allOperators];
 
-        allJobs = allJobs.concat(jobs);
-        operators.forEach(operator => {
-          allOperators = updateOperators(allOperators, operator);
-        });
+          allJobs = allJobs.concat(jobs);
+          operators.forEach(operator => {
+            allOperators = updateOperators(allOperators, operator);
+          });
 
-        const workQualities: Array<WorkQuality> = [];
-        return { day, jobs, operators, workQualities };
-      }
-    );
+          const workQualities: Array<WorkQuality> = [];
+          return { day, jobs, operators, workQualities };
+        }
+      );
 
-    setState({
-      isSimulating: false,
-      jobs: allJobs,
-      operators: allOperators,
-      logsByDay,
-    });
+      setState({
+        isSimulating: false,
+        jobs: allJobs,
+        operators: allOperators,
+        logsByDay,
+      });
+    }, 150);
   };
 
   const onSubmit = ({

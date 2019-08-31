@@ -14,13 +14,13 @@ function TabMenu(): JSX.Element {
       </TabList>
       <TabPanel>
         <div>
-          <h2>Demando vs Meses</h2>
+          <h2>Demanda vs Meses</h2>
           <JobsInTimeChart />
         </div>
       </TabPanel>
       <TabPanel>
         <div>
-          <h2>Demando vs Operarios</h2>
+          <h2>Demanda vs Operarios</h2>
         </div>
       </TabPanel>
       <TabPanel>
