@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import generateWorkableDays from 'helpers/generateWorkableDays';
 import SimulatorForm, { SimulatorFormData } from './SimulatorForm';
+=======
+import React from 'react';
+import generateJobsByDay from 'helpers/generateJobsByDay';
+import moment from 'moment';
+
+>>>>>>> generateJobsByDay
 
 function HomePage() {
   const [isSimulating, setIsSimulating] = useState(false);
