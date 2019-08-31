@@ -45,7 +45,7 @@ function HomePage() {
     setState({ isSimulating: true });
 
     let allJobs: Array<Job> = [];
-    let allOperators: Array<Job> = [];
+    let allOperators: Array<Operator> = [];
     const workableDays = generateWorkableDays(36);
     const logsByDay: Array<DayLog> = workableDays.map(
       (day: moment.Moment): DayLog => {
