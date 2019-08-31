@@ -4,8 +4,6 @@ import Row from 'react-bootstrap/Row';
 import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import generateWorkableDays from 'helpers/generateWorkableDays';
-import SimulatorForm, { SimulatorFormData } from './SimulatorForm';
-import TabMenu from './TabMenu';
 import Job from 'interfaces/Job';
 import Operator from 'interfaces/Operator';
 import WorkQuality from 'interfaces/WorkQuality';
@@ -13,6 +11,8 @@ import DayLog from 'interfaces/DayLog';
 import generateJobsByDay from 'helpers/generateJobsByDay';
 import generateOperator from 'helpers/generateOperator';
 import updateOperators from 'helpers/updateOperators';
+import SimulatorForm, { SimulatorFormData } from './SimulatorForm';
+import TabMenu from './TabMenu';
 
 interface State {
   isSimulating: boolean;
@@ -21,16 +21,21 @@ interface State {
   logsByDay: Array<DayLog>;
 }
 
-interface NewState {
+interface OptionalState {
   isSimulating?: boolean;
   jobs?: Array<Job>;
   operators?: Array<Operator>;
   logsByDay?: Array<DayLog>;
 }
 
+export const LogContext = React.createContext<Array<DayLog>>([]);
+
 function HomePage() {
   const [state, setState] = useReducer(
-    (state: State, newState: NewState): State => ({ ...state, ...newState }),
+    (prevState: State, newState: OptionalState): State => ({
+      ...prevState,
+      ...newState,
+    }),
     {
       isSimulating: false,
       jobs: [],
@@ -92,7 +97,11 @@ function HomePage() {
           <Spinner animation="grow" variant="primary" />
         </Row>
       ) : (
-        isEmpty(logsByDay) || <TabMenu />
+        isEmpty(logsByDay) || (
+          <LogContext.Provider value={logsByDay}>
+            <TabMenu />
+          </LogContext.Provider>
+        )
       )}
     </div>
   );

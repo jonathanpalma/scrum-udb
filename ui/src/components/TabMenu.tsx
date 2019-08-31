@@ -1,7 +1,8 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import DayLog from 'interfaces/DayLog';
+import JobsInTimeChart from './JobsInTimeChart';
 import 'react-tabs/style/react-tabs.css';
-import BaseLineChart from './BaseLineChart';
 
 function TabMenu(): JSX.Element {
   return (
@@ -15,13 +16,12 @@ function TabMenu(): JSX.Element {
       <TabPanel>
         <div>
           <h2>Demando vs Meses</h2>
-          <BaseLineChart />
+          <JobsInTimeChart />
         </div>
       </TabPanel>
       <TabPanel>
         <div>
           <h2>Demando vs Operarios</h2>
-          <BaseLineChart />
         </div>
       </TabPanel>
       <TabPanel>

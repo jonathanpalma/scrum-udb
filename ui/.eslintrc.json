@@ -14,7 +14,7 @@
       "error",
       {
         "argsIgnorePattern": "next",
-        "varsIgnorePattern": "DayLog|Evaluator|Job|Operator|OperatorAvailability|WorkLog|WorkQuality|moment|Config"
+        "varsIgnorePattern": "DayLog|Evaluator|Job|Operator|OperatorAvailability|WorkLog|WorkQuality|moment|Config|SimulatorFormData"
       }
     ],
     "prettier/prettier": [
