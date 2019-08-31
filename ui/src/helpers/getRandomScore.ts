@@ -19,6 +19,8 @@ const getRandomScore = () => {
     }
   }
 
+  return 4;
+
 };
 
 export default getRandomScore;
