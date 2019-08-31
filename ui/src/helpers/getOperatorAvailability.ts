@@ -1,6 +1,9 @@
 import Operator from 'interfaces/Operator';
 import OperatorAvailability from 'interfaces/OperatorAvailabilty';
 
+const defaultAvailability = 4;
+
+
 const getOperatorAvailabilityByDay = (
   operator: Operator
 ): OperatorAvailability => {
@@ -11,8 +14,7 @@ const getOperatorAvailabilityByDay = (
   }
 
   if (operator.isPunished && operator.isActive) {
-    availability = 3;
-    operator.isPunished = false;
+    availability = defaultAvailability - operator.punishmentNumber;
   }
 
   if (operator.isActive && !operator.isPunished) {
