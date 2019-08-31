@@ -6,15 +6,24 @@ import moment from 'moment';
 import generateWorkableDays from 'helpers/generateWorkableDays';
 import SimulatorForm, { SimulatorFormData } from './SimulatorForm';
 import TabMenu from './TabMenu';
+import Job from 'interfaces/Job';
+import Operator from 'interfaces/Operator';
+import WorkQuality from 'interfaces/WorkQuality';
+import DayLog from 'interfaces/DayLog';
+import generateJobsByDay from 'helpers/generateJobsByDay';
 
 interface State {
   isSimulating: boolean;
-  workableDays: Array<moment.Moment>;
+  jobs: Array<Job>;
+  operators: Array<Operator>;
+  logsByDay: Array<DayLog>;
 }
 
 interface NewState {
   isSimulating?: boolean;
-  workableDays?: Array<moment.Moment>;
+  jobs?: Array<Job>;
+  operators?: Array<Operator>;
+  logsByDay?: Array<DayLog>;
 }
 
 function HomePage() {
@@ -22,7 +31,9 @@ function HomePage() {
     (state: State, newState: NewState): State => ({ ...state, ...newState }),
     {
       isSimulating: false,
-      workableDays: [],
+      jobs: [],
+      operators: [],
+      logsByDay: [],
     }
   );
 
@@ -33,12 +44,27 @@ function HomePage() {
   ): void => {
     setState({ isSimulating: true });
 
+    let allJobs: Array<Job> = [];
+    let allOperators: Array<Job> = [];
     const workableDays = generateWorkableDays(36);
-    console.log(workableDays);
+    const logsByDay: Array<DayLog> = workableDays.map(
+      (day: moment.Moment): DayLog => {
+        const jobs: Array<Job> = generateJobsByDay(day);
+        const operators: Array<Operator> = [];
 
-    setTimeout(() => {
-      setState({ isSimulating: false, workableDays });
-    }, 1000);
+        allJobs = allJobs.concat(jobs);
+        allOperators = allOperators.concat(operators);
+
+        const workQualities: Array<WorkQuality> = [];
+        return { day, jobs, operators, workQualities };
+      }
+    );
+
+    setState({
+      isSimulating: false,
+      jobs: allJobs,
+      logsByDay,
+    });
   };
 
   const onSubmit = ({
@@ -49,7 +75,7 @@ function HomePage() {
     simulate(operatorsQty, hoursPerJob, effectiveness);
   };
 
-  const { isSimulating, workableDays } = state;
+  const { isSimulating, logsByDay } = state;
   return (
     <div className="container">
       <SimulatorForm onSubmit={onSubmit} isLoading={isSimulating} />
@@ -58,7 +84,7 @@ function HomePage() {
           <Spinner animation="grow" variant="primary" />
         </Row>
       ) : (
-        isEmpty(workableDays) || <TabMenu />
+        isEmpty(logsByDay) || <TabMenu />
       )}
     </div>
   );
