@@ -4,7 +4,7 @@ const rand = function(min: number, max: number) {
 
 const getRandomScore = function() {
   const scoreList = [1,2,3,4,5];
-  const weight = [0.01, 0.01, 0.04, 0.04, 0.9]
+  const weight = [0.02, 0.04, 0.04, 0.45, 0.45]
   
   const totalWeight = weight.reduce((prev, current) => prev + current);
   const randomNum = rand(0, totalWeight);
