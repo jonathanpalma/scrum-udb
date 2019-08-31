@@ -3,10 +3,20 @@ import Operator from 'interfaces/Operator';
 import getOperatorAvailability from 'helpers/getOperatorAvailability';
 
 const getWorkLoad = (jobs: Array<Job>, operators: Array<Operator>): number => {
-  var operatorAvailabilitys = operators.map(
-    operator => getOperatorAvailability
-  );
-  var availability = 0;
+  var operatorAvailabilitys = operators.map(function(operator) {
+    return getOperatorAvailability(operator);
+  });
 
-  return 0;
+  var jobQuantity = jobs.length;
+  var totalAvailability = operatorAvailabilitys.map(function(
+    OperatorAvailability
+  ) {
+    return OperatorAvailability.availability;
+  });
+  var availability = totalAvailability.reduce((a, b) => a + b);
+  var fitWorkInAvailability = availability - jobQuantity;
+
+  return fitWorkInAvailability;
 };
+
+export default getWorkLoad;
