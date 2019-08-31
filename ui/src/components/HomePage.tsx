@@ -1,6 +1,4 @@
 import React, { useReducer } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
-import Row from 'react-bootstrap/Row';
 import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import generateWorkableDays from 'helpers/generateWorkableDays';
@@ -79,7 +77,7 @@ function HomePage() {
         operators: allOperators,
         logsByDay,
       });
-    }, 150);
+    }, 1000);
   };
 
   const onSubmit = ({
@@ -94,16 +92,11 @@ function HomePage() {
   return (
     <div className="container">
       <SimulatorForm onSubmit={onSubmit} isLoading={isSimulating} />
-      {isSimulating ? (
-        <Row className="justify-content-md-center">
-          <Spinner animation="grow" variant="primary" />
-        </Row>
-      ) : (
-        isEmpty(logsByDay) || (
-          <LogContext.Provider value={logsByDay}>
-            <TabMenu />
-          </LogContext.Provider>
-        )
+
+      {!isEmpty(logsByDay) && (
+        <LogContext.Provider value={logsByDay}>
+          <TabMenu />
+        </LogContext.Provider>
       )}
     </div>
   );
