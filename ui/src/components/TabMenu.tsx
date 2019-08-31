@@ -7,14 +7,14 @@ function TabMenu(): JSX.Element {
   return (
     <Tabs>
       <TabList>
-        <Tab>Demanda vs Meses</Tab>
+        <Tab>Demanda y Operarios en el tiempo</Tab>
         <Tab>Demanda vs Operarios</Tab>
         <Tab>Calificacion por Operario</Tab>
         <Tab>Remuneracion mensual</Tab>
       </TabList>
       <TabPanel>
         <div>
-          <h2>Demanda vs Meses</h2>
+          <h2>Demanda y Operarios en el tiempo</h2>
           <JobsInTimeChart />
         </div>
       </TabPanel>
