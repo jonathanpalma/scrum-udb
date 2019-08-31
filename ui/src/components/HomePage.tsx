@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import generateWorkableDays from 'helpers/generateWorkableDays';
 import SimulatorForm, { SimulatorFormData } from './SimulatorForm';
+import TabMenu from './TabMenu';
 
 function HomePage() {
   const [isSimulating, setIsSimulating] = useState(false);
@@ -17,6 +18,7 @@ function HomePage() {
   return (
     <div className="container">
       <SimulatorForm onSubmit={onSubmit} isLoading={isSimulating} />
+      <TabMenu />
     </div>
   );
 }
