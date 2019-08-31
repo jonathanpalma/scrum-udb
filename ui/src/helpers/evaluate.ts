@@ -8,7 +8,7 @@ const evaluate = (workLog: WorkLog): WorkQuality => {
   var workQuality: WorkQuality = {
     id: uuidv4(),
     idEvaluator: getRandomEvaluator().id,
-    idWorkLog: workLog.id,
+    workLog: workLog,
     score: getRandomScore(),
   };
 
