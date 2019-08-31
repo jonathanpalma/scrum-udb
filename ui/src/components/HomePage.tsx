@@ -1,6 +1,4 @@
 import React, { useReducer } from 'react';
-import Spinner from 'react-bootstrap/Spinner';
-import Row from 'react-bootstrap/Row';
 import isEmpty from 'lodash/isEmpty';
 import moment from 'moment';
 import generateWorkableDays from 'helpers/generateWorkableDays';
@@ -51,33 +49,35 @@ function HomePage() {
   ): void => {
     setState({ isSimulating: true });
 
-    const workableDays = generateWorkableDays(2);
+    setTimeout(() => {
+      const workableDays = generateWorkableDays(1);
 
-    let allJobs: Array<Job> = [];
-    let allOperators: Array<Operator> = Array.from(Array(operatorsQty), () =>
-      generateOperator(workableDays[0])
-    );
-    const logsByDay: Array<DayLog> = workableDays.map(
-      (day: moment.Moment): DayLog => {
-        const jobs: Array<Job> = generateJobsByDay(day);
-        const operators: Array<Operator> = [];
+      let allJobs: Array<Job> = [];
+      let allOperators: Array<Operator> = Array.from(Array(operatorsQty), () =>
+        generateOperator(workableDays[0])
+      );
+      const logsByDay: Array<DayLog> = workableDays.map(
+        (day: moment.Moment): DayLog => {
+          const jobs: Array<Job> = generateJobsByDay(day);
+          const operators: Array<Operator> = [...allOperators];
 
-        allJobs = allJobs.concat(jobs);
-        operators.forEach(operator => {
-          allOperators = updateOperators(allOperators, operator);
-        });
+          allJobs = allJobs.concat(jobs);
+          operators.forEach(operator => {
+            allOperators = updateOperators(allOperators, operator);
+          });
 
-        const workQualities: Array<WorkQuality> = [];
-        return { day, jobs, operators, workQualities };
-      }
-    );
+          const workQualities: Array<WorkQuality> = [];
+          return { day, jobs, operators, workQualities };
+        }
+      );
 
-    setState({
-      isSimulating: false,
-      jobs: allJobs,
-      operators: allOperators,
-      logsByDay,
-    });
+      setState({
+        isSimulating: false,
+        jobs: allJobs,
+        operators: allOperators,
+        logsByDay,
+      });
+    }, 1000);
   };
 
   const onSubmit = ({
@@ -92,16 +92,11 @@ function HomePage() {
   return (
     <div className="container">
       <SimulatorForm onSubmit={onSubmit} isLoading={isSimulating} />
-      {isSimulating ? (
-        <Row className="justify-content-md-center">
-          <Spinner animation="grow" variant="primary" />
-        </Row>
-      ) : (
-        isEmpty(logsByDay) || (
-          <LogContext.Provider value={logsByDay}>
-            <TabMenu />
-          </LogContext.Provider>
-        )
+
+      {!isEmpty(logsByDay) && (
+        <LogContext.Provider value={logsByDay}>
+          <TabMenu />
+        </LogContext.Provider>
       )}
     </div>
   );
