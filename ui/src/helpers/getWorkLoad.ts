@@ -9,7 +9,7 @@ const getWorkLoad = (jobs: Array<Job>, operators: Array<Operator>): number => {
     var availability = 0;
 
 
-    return ;
+    return 0;
 }
 
 
