@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Spinner from 'react-bootstrap/Spinner';
@@ -15,7 +15,7 @@ interface Props {
   onSubmit(form: SimulatorFormData): void;
 }
 
-function SimulatorForm({ isLoading, onSubmit }: Props) {
+function SimulatorForm({ isLoading, onSubmit }: Props): JSX.Element {
   const operatorsQty = useFormInput(5);
   const hoursPerJob = useFormInput(2);
   const effectiveness = useFormInput(100);
@@ -31,7 +31,7 @@ function SimulatorForm({ isLoading, onSubmit }: Props) {
     onSubmit(formData);
   };
   return (
-    <Form>
+    <Form className="simulator-form">
       <Form.Group controlId="operatorsQty">
         <Form.Label>Cantidad de operadores</Form.Label>
         <Form.Control
