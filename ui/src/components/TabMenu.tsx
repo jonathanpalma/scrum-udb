@@ -1,6 +1,5 @@
 import React from 'react';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
-import DayLog from 'interfaces/DayLog';
 import JobsInTimeChart from './JobsInTimeChart';
 import 'react-tabs/style/react-tabs.css';
 
